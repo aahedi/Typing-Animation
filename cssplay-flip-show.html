@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<style>
+.gallery {width:750px; height:750px; margin:0 auto; position:relative; overflow:hidden;}
+.gallery input {position:absolute; display:none;}
+.container {position: absolute; height:600px; width:400px; left:175px; top:75px;
+-webkit-transition: 1.5s ease-in-out;
+-moz-transition: 1.5s ease-in-out;
+-ms-transition: 1.5s ease-in-out;
+-o-transition: 1.5s ease-in-out;
+transition: 1.5s ease-in-out;
+}
+.container div {position:absolute; left:0; top:0; width:400px; height:600px;
+-webkit-transition: 1.5s ease-in-out;
+-moz-transition: 1.5s ease-in-out;
+-ms-transition: 1.5s ease-in-out;
+-o-transition: 1.5s ease-in-out;
+transition: 1.5s ease-in-out;
+}
+
+.container div.lower {border:1px solid #888;
+-moz-backface-visibility: hidden;
+-webkit-backface-visibility: hidden;
+backface-visibility: hidden;
+background-size:cover;
+-moz-transform: perspective(1200px) rotateY(180deg);
+-webkit-transform: perspective(1200px) rotateY(180deg);
+transform: perspective(1200px) rotateY(180deg);
+}
+.container div.lower:after {content:""; position:absolute; font:normal 18px/30px georgia, serif; text-align:center;}
+
+.container div.upper {border:1px solid #888;
+-moz-backface-visibility: hidden;
+-webkit-backface-visibility: hidden;
+backface-visibility: hidden;
+background-size:cover;
+-moz-transform: perspective(1200px) rotateY(0deg);
+-webkit-transform: perspective(1200px) rotateY(0deg);
+transform: perspective(1200px) rotateY(0deg);
+}
+.container div.upper:after {content:""; position:absolute; font:normal 18px/30px georgia, serif; text-align:center;}
+
+.container label {display:block; width:400px; height:600px; position:absolute; left:0; top:0; display:none; cursor:pointer;}
+
+#p1:checked ~ .container label:nth-of-type(2) {display:block;}
+#p1:checked ~ .container div.lower div {background:url(http://www.cssplay.co.uk/menu/flipcard/g6.jpg);}
+#p1:checked ~ .container div.upper div {background:url(http://www.cssplay.co.uk/menu/flipcard/g1.jpg);}
+#p1:checked ~ .container div.lower {
+-moz-transform: perspective(1200px) rotateY(180deg);
+-webkit-transform: perspective(1200px) rotateY(180deg);
+transform: perspective(1200px) rotateY(180deg);
+}
+#p1:checked ~ .container div.upper {
+-moz-transform: perspective(1200px) rotateY(0deg);
+-webkit-transform: perspective(1200px) rotateY(0deg);
+transform: perspective(1200px) rotateY(0deg);
+}
+#p1:checked ~ .container div.upper:after {content:"Lady in Black #1"; left:0; top:600px; width:400px;}
+#p1:checked ~ .container div.lower:after {content:"Lady in Black #6"; left:0; top:0; width:600px;
+-webkit-transform-origin:left top; 
+-moz-transform-origin:left top; 
+-o-transform-origin:left top; 
+transform-origin:left top; 
+-webkit-transform: rotateZ(90deg);
+-moz-transform: rotateZ(90deg);
+transform: rotateZ(90deg);
+}
+
+#p2:checked ~ .container {
+-moz-transform: perspective(1200px) rotateZ(-90deg);
+-webkit-transform: perspective(1200px) rotateZ(-90deg);
+transform: perspective(1200px) rotateZ(-90deg);
+}
+#p2:checked ~ .container label:nth-of-type(3) {display:block;}
+#p2:checked ~ .container div.lower div {background:url(http://www.cssplay.co.uk/menu/flipcard/g2.jpg);}
+#p2:checked ~ .container div.upper div {background:url(http://www.cssplay.co.uk/menu/flipcard/g1.jpg);}
+#p2:checked ~ .container div.lower {
+-moz-transform: perspective(1200px) rotateY(0deg);
+-webkit-transform: perspective(1200px) rotateY(0deg);
+transform: perspective(1200px) rotateY(0deg);
+}
+#p2:checked ~ .container div.upper {
+-moz-transform: perspective(1200px) rotateY(-179.9deg);
+-webkit-transform: perspective(1200px) rotateY(-179.9deg);
+transform: perspective(1200px) rotateY(-179.9deg);
+}
+#p2:checked ~ .container div.upper:after {content:"Lady in Black #1"; left:0; top:600px; width:400px;}
+#p2:checked ~ .container div.lower:after {content:"Lady in Black #2"; left:0; top:0; width:600px; 
+-webkit-transform-origin:left top; 
+-moz-transform-origin:left top; 
+-o-transform-origin:left top; 
+transform-origin:left top; 
+-webkit-transform: rotateZ(90deg);
+-moz-transform: rotateZ(90deg);
+transform: rotateZ(90deg);
+}
+
+#p3:checked ~ .container label:nth-of-type(4) {display:block;}
+#p3:checked ~ .container div.lower div {background:url(http://www.cssplay.co.uk/menu/flipcard/g2.jpg);}
+#p3:checked ~ .container div.upper div {background:url(http://www.cssplay.co.uk/menu/flipcard/g3.jpg);}
+#p3:checked ~ .container div.lower {
+-moz-transform: perspective(1200px) rotateY(180deg);
+-webkit-transform: perspective(1200px) rotateY(180deg);
+transform: perspective(1200px) rotateY(180deg);
+}
+#p3:checked ~ .container div.upper {
+-moz-transform: perspective(1200px) rotateY(0deg);
+-webkit-transform: perspective(1200px) rotateY(0deg);
+transform: perspective(1200px) rotateY(0deg);
+}
+#p3:checked ~ .container div.upper:after {content:"Lady in Black #3"; left:0; top:600px; width:400px;}
+#p3:checked ~ .container div.lower:after {content:"Lady in Black #2"; left:0; top:0; width:600px; 
+-webkit-transform-origin:left top; 
+-moz-transform-origin:left top; 
+-o-transform-origin:left top; 
+transform-origin:left top; 
+-webkit-transform: rotateZ(90deg);
+-moz-transform: rotateZ(90deg);
+transform: rotateZ(90deg);
+}
+
+#p4:checked ~ .container {
+-moz-transform: perspective(1200px) rotateZ(90deg);
+-webkit-transform: perspective(1200px) rotateZ(90deg);
+transform: perspective(1200px) rotateZ(90deg);
+}
+#p4:checked ~ .container label:nth-of-type(5) {display:block;}
+#p4:checked ~ .container div.lower div {background:url(http://www.cssplay.co.uk/menu/flipcard/g4.jpg);}
+#p4:checked ~ .container div.upper div {background:url(http://www.cssplay.co.uk/menu/flipcard/g3.jpg);}
+#p4:checked ~ .container div.lower {
+-moz-transform: perspective(1200px) rotateY(0deg);
+-webkit-transform: perspective(1200px) rotateY(0deg);
+transform: perspective(1200px) rotateY(0deg);
+}
+#p4:checked ~ .container div.upper {
+-moz-transform: perspective(1200px) rotateY(-179.9deg);
+-webkit-transform: perspective(1200px) rotateY(-179.9deg);
+transform: perspective(1200px) rotateY(-179.9deg);
+}
+#p4:checked ~ .container div.upper:after {content:"Lady in Black #3"; left:0; top:600px; width:400px;}
+#p4:checked ~ .container div.lower:after {content:"Lady in Black #4"; left:430px; bottom:0; width:600px; white-space:nowrap;
+-webkit-transform-origin:left bottom; 
+-moz-transform-origin:left bottom; 
+-o-transform-origin:left bottom; 
+transform-origin:left bottom; 
+-webkit-transform: rotateZ(-90deg);
+-moz-transform: rotateZ(-90deg);
+transform: rotateZ(-90deg);
+}
+
+#p5:checked ~ .container label:nth-of-type(6) {display:block;}
+#p5:checked ~ .container div.lower div {background:url(http://www.cssplay.co.uk/menu/flipcard/g4.jpg);}
+#p5:checked ~ .container div.upper div {background:url(http://www.cssplay.co.uk/menu/flipcard/g5.jpg);}
+#p5:checked ~ .container div.lower {
+-moz-transform: perspective(1200px) rotateY(180deg);
+-webkit-transform: perspective(1200px) rotateY(180deg);
+transform: perspective(1200px) rotateY(180deg);
+}
+#p5:checked ~ .container div.upper {
+-moz-transform: perspective(1200px) rotateY(0deg);
+-webkit-transform: perspective(1200px) rotateY(0deg);
+transform: perspective(1200px) rotateY(0deg);
+}
+#p5:checked ~ .container div.upper:after {content:"Lady in Black #5"; left:0; top:600px; width:400px;}
+#p5:checked ~ .container div.lower:after {content:"Lady in Black #4"; left:430px; bottom:0; width:600px; white-space:nowrap;
+-webkit-transform-origin:left bottom; 
+-moz-transform-origin:left bottom; 
+-o-transform-origin:left bottom; 
+transform-origin:left bottom; 
+-webkit-transform: rotateZ(-90deg);
+-moz-transform: rotateZ(-90deg);
+transform: rotateZ(-90deg);
+}
+
+#p6:checked ~ .container {
+-moz-transform: perspective(1200px) rotateZ(-90deg);
+-webkit-transform: perspective(1200px) rotateZ(-90deg);
+transform: perspective(1200px) rotateZ(-90deg);
+}
+#p6:checked ~ .container label:nth-of-type(1) {display:block;}
+#p6:checked ~ .container div.lower div {background:url(http://www.cssplay.co.uk/menu/flipcard/g6.jpg);}
+#p6:checked ~ .container div.upper div {background:url(http://www.cssplay.co.uk/menu/flipcard/g5.jpg);}
+#p6:checked ~ .container div.lower {
+-moz-transform: perspective(1200px) rotateY(360deg);
+-webkit-transform: perspective(1200px) rotateY(360deg);
+transform: perspective(1200px) rotateY(360deg);
+}
+#p6:checked ~ .container div.upper {
+-moz-transform: perspective(1200px) rotateY(179.9deg);
+-webkit-transform: perspective(1200px) rotateY(179.9deg);
+transform: perspective(1200px) rotateY(179.9deg);
+}
+#p6:checked ~ .container div.upper:after {content:"Lady in Black #5"; left:0; top:600px; width:400px;}
+#p6:checked ~ .container div.lower:after {content:"Lady in Black #6"; left:0; top:0; width:600px;
+-webkit-transform-origin:left top; 
+-moz-transform-origin:left top; 
+-o-transform-origin:left top; 
+transform-origin:left top; 
+-webkit-transform: rotateZ(90deg);
+-moz-transform: rotateZ(90deg);
+transform: rotateZ(90deg);
+}
+
+</style>
+
+
+<body>
+<div class="gallery">
+	<input type="radio" name="images" id="p1" checked="checked">
+	<input type="radio" name="images" id="p2">
+	<input type="radio" name="images" id="p3">
+	<input type="radio" name="images" id="p4">
+	<input type="radio" name="images" id="p5">
+	<input type="radio" name="images" id="p6">
+	<div class="container">
+		<div class="lower">
+			<div></div>
+		</div>
+		<div class="upper">
+			<div></div>
+		</div>
+		<label for="p1"></label>
+		<label for="p2"></label>
+		<label for="p3"></label>
+		<label for="p4"></label>
+		<label for="p5"></label>
+		<label for="p6"></label>
+	</div>
+</div>
+</body>
+</html>
